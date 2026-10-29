@@ -1,0 +1,26 @@
+# Maintainer: Wolframium (https://github.com/wolframium-main)
+
+pkgname=plain
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='A browser that does exactly what you tell it'
+arch=('x86_64' 'aarch64')
+url='https://github.com/wolframium-main/plain'
+license=('GPL-3.0-or-later')
+depends=('qt6-base' 'qt6-webengine' 'ttf-ibm-plex' 'hicolor-icon-theme')
+makedepends=('cmake' 'git')
+optdepends=('xdg-utils: open downloaded PDFs in the system viewer')
+source=("git+$url.git#tag=v$pkgver")
+sha256sums=('SKIP')
+
+build() {
+  cmake -S "$pkgname" -B build \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -Wno-dev
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}

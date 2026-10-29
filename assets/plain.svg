@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- plain: a cell in the Wolframium language. violet under on-violet,
+       the one radius (2px), the colon every command starts with.
+       Squares, not dots: circles are only for things that mean a circle. -->
+  <rect width="64" height="64" rx="2" fill="#3b2475"/>
+  <rect x="26" y="16" width="12" height="12" rx="2" fill="#eeecf3"/>
+  <rect x="26" y="36" width="12" height="12" rx="2" fill="#eeecf3"/>
+</svg>

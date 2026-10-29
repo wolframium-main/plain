@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=plain
+GenericName=Web Browser
+GenericName[ru]=Веб-браузер
+Comment=A browser that does exactly what you tell it
+Comment[ru]=Браузер, который делает ровно то, что сказали
+Exec=plain %u
+Icon=plain
+Terminal=false
+Categories=Network;WebBrowser;
+MimeType=text/html;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=plain

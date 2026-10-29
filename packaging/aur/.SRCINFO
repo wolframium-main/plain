@@ -1,0 +1,19 @@
+pkgbase = plain
+	pkgdesc = A browser that does exactly what you tell it
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/wolframium-main/plain
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-or-later
+	makedepends = cmake
+	makedepends = git
+	depends = qt6-base
+	depends = qt6-webengine
+	depends = ttf-ibm-plex
+	depends = hicolor-icon-theme
+	optdepends = xdg-utils: open downloaded PDFs in the system viewer
+	source = git+https://github.com/wolframium-main/plain.git#tag=v0.1.0
+	sha256sums = SKIP
+
+pkgname = plain
