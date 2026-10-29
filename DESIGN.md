@@ -248,10 +248,17 @@ HTTP-авторизация (окно логина и пароля от брау
 
 ## Распространение
 
-Пакет для Arch Linux в AUR: `plain`. Исходники — на GitHub,
-`wolframium-main/plain`; пакет собирает браузер из тега релиза с системным Qt.
+Пакет для Arch Linux прямо из репозитория на GitHub (`wolframium-main/plain`),
+без AUR: `packaging/aur/PKGBUILD` скачивает исходники по тегу релиза и
+собирает браузер с системным Qt. Каталог называется `aur`, потому что этот же
+PKGBUILD вместе с `.SRCINFO` можно без изменений отправить в AUR, если
+когда-нибудь понадобится.
 
-- `packaging/aur/` — PKGBUILD и .SRCINFO для AUR.
+- `packaging/aur/` — сборка из релиза, для установки.
 - `packaging/arch/` — сборка из этого дерева исходников, для разработки.
 
 Других пакетов (Flatpak, deb) нет.
+
+**Новый релиз:** поднять `pkgver` в обоих PKGBUILD и `version` в
+`CMakeLists.txt`, обновить `.SRCINFO` (`makepkg --printsrcinfo > .SRCINFO`),
+затем создать на GitHub релиз с тегом `vX.Y.Z`.

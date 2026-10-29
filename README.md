@@ -7,21 +7,18 @@
 
 ## Установка в Arch Linux
 
-Из AUR:
-
 ```sh
-yay -S plain
-```
-
-Или из этого дерева исходников:
-
-```sh
-cd packaging/arch
+git clone https://github.com/wolframium-main/plain
+cd plain/packaging/aur
 makepkg -si
 ```
 
-Удаление: `sudo pacman -R plain`. После изменений в коде увеличь `pkgrel`
-в `PKGBUILD` и снова выполни `makepkg -si`.
+PKGBUILD скачивает исходники последнего релиза с GitHub и собирает обычный
+пакет: удаляется он через `sudo pacman -R plain`. Чтобы обновиться до нового
+релиза, выполни `git pull` и снова `makepkg -si`.
+
+Для разработки есть `packaging/arch/`: он собирает пакет из текущего дерева
+исходников, а не из релиза.
 
 ## Сборка вручную
 
