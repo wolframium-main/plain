@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!-- plain: a blank page and the colon every command starts with.
+       GNOME palette: light 1-5, blue 2-5. -->
+  <defs>
+    <linearGradient id="face" x1="0" y1="12" x2="0" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f6f5f4"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="96" x2="0" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c0bfbc"/>
+      <stop offset="1" stop-color="#9a9996"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="20" width="104" height="96" rx="16" fill="url(#side)"/>
+  <rect x="12" y="12" width="104" height="96" rx="16" fill="url(#face)"/>
+  <circle cx="64" cy="46" r="11" fill="#1a5fb4"/>
+  <circle cx="64" cy="44" r="11" fill="#3584e4"/>
+  <circle cx="64" cy="78" r="11" fill="#1a5fb4"/>
+  <circle cx="64" cy="76" r="11" fill="#3584e4"/>
+</svg>

@@ -1,7 +1,8 @@
 # plain
 
-Браузер для Linux, который делает ровно то, что сказали. Одно окно, не больше
+Браузер для GNOME, который делает ровно то, что сказали. Одно окно, не больше
 пяти вкладок, никакого интерфейса, кроме страницы, и командная строка по Ctrl+;.
+Родное приложение GNOME: GTK 4, libadwaita и WebKitGTK.
 
 Почему он такой, описано в [DESIGN.md](DESIGN.md).
 
@@ -17,40 +18,35 @@ PKGBUILD скачивает с GitHub исходники релиза, указ�
 пакет: удаляется он через `sudo pacman -R plain`. Чтобы обновиться до нового
 релиза, выполни `git pull` и снова `makepkg -si`.
 
-Для разработки есть `packaging/arch/`: он собирает пакет из текущего дерева
-исходников, а не из релиза.
-
 ## Сборка вручную
 
-Нужны Qt 6.4 или новее с модулем WebEngine, CMake, компилятор C++17 и шрифты
-IBM Plex (без них панель будет системным моноширинным шрифтом).
+Нужны GTK 4, libadwaita, WebKitGTK 6.0 и Rust (cargo).
 
-Debian / Ubuntu:
+Arch:
 
 ```sh
-sudo apt install cmake g++ qt6-base-dev qt6-webengine-dev libgl-dev fonts-ibm-plex
+sudo pacman -S --needed gtk4 libadwaita webkitgtk-6.0 cargo
 ```
 
 Fedora:
 
 ```sh
-sudo dnf install cmake gcc-c++ qt6-qtbase-devel qt6-qtwebengine-devel \
-    ibm-plex-mono-fonts ibm-plex-sans-fonts
+sudo dnf install gtk4-devel libadwaita-devel webkitgtk6.0-devel cargo
 ```
 
-Сборка и установка:
+Debian / Ubuntu:
 
 ```sh
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build -j
-sudo cmake --install build
+sudo apt install libgtk-4-dev libadwaita-1-dev libwebkitgtk-6.0-dev cargo
 ```
 
-Сделать браузером по умолчанию:
+Сборка и запуск:
 
 ```sh
-xdg-settings set default-web-browser plain.desktop
+cargo run --release
 ```
+
+Тесты: `cargo test`.
 
 ## Использование
 
@@ -65,25 +61,13 @@ Ctrl+; (клавиша с двоеточием) открывает строку.
 :proceed       открыть страницу с недействительным сертификатом
 ```
 
-Esc закрывает строку.
+Esc закрывает строку. Когда сайт просит камеру или микрофон, ответ — `y` или `n`.
 
 ## Где что лежит
 
-- `~/.local/share/plain/` — куки, кэш и список фильтров рекламы.
-- Загрузки — в системной папке загрузок (обычно `~/Downloads`).
-
-## Тесты
-
-```sh
-cmake -S . -B build -DPLAIN_BUILD_TESTS=ON
-cmake --build build -j
-QT_QPA_PLATFORM=offscreen \
-QTWEBENGINE_CHROMIUM_FLAGS=--use-fake-device-for-media-stream \
-./build/test_plain
-```
-
-Для тестов сертификатов нужны `openssl` и `python3`. Проверено с Qt 6.4
-(Ubuntu 24.04) и Qt 6.10.
+- `~/.local/share/plain/` — куки, данные сайтов и список фильтров рекламы.
+- `~/.cache/plain/` — кэш.
+- Загрузки — в папке «Загрузки».
 
 ## Лицензия
 

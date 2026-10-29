@@ -1,26 +1,46 @@
 # Maintainer: Wolframium (https://github.com/wolframium-main)
 
 pkgname=plain
-pkgver=0.1.0
+pkgver=0.2.0
 pkgrel=1
 pkgdesc='A browser that does exactly what you tell it'
 arch=('x86_64' 'aarch64')
 url='https://github.com/wolframium-main/plain'
 license=('GPL-3.0-or-later')
-depends=('qt6-base' 'qt6-webengine' 'ttf-ibm-plex' 'hicolor-icon-theme')
-makedepends=('cmake' 'git')
+depends=('gtk4' 'libadwaita' 'webkitgtk-6.0' 'hicolor-icon-theme')
+makedepends=('cargo' 'git')
 optdepends=('xdg-utils: open downloaded PDFs in the system viewer')
 source=("git+$url.git#tag=v$pkgver")
 sha256sums=('SKIP')
 
+_appid=io.github.wolframium_main.Plain
+
+prepare() {
+  cd "$pkgname"
+  export RUSTUP_TOOLCHAIN=stable
+  cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+}
+
 build() {
-  cmake -S "$pkgname" -B build \
-    -DCMAKE_BUILD_TYPE=None \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -Wno-dev
-  cmake --build build
+  cd "$pkgname"
+  export RUSTUP_TOOLCHAIN=stable
+  export CARGO_TARGET_DIR=target
+  cargo build --frozen --release
+}
+
+check() {
+  cd "$pkgname"
+  export RUSTUP_TOOLCHAIN=stable
+  cargo test --frozen --release
 }
 
 package() {
-  DESTDIR="$pkgdir" cmake --install build
+  cd "$pkgname"
+  install -Dm755 target/release/plain "$pkgdir/usr/bin/plain"
+  install -Dm644 "data/$_appid.desktop" -t "$pkgdir/usr/share/applications"
+  install -Dm644 "data/$_appid.metainfo.xml" -t "$pkgdir/usr/share/metainfo"
+  install -Dm644 "data/icons/hicolor/scalable/apps/$_appid.svg" \
+    -t "$pkgdir/usr/share/icons/hicolor/scalable/apps"
+  install -Dm644 "data/icons/hicolor/symbolic/apps/$_appid-symbolic.svg" \
+    -t "$pkgdir/usr/share/icons/hicolor/symbolic/apps"
 }

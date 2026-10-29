@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.wolframium_main.Plain</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>plain</name>
+  <summary>A browser that does exactly what you tell it</summary>
+  <summary xml:lang="ru">Браузер, который делает ровно то, что сказали</summary>
+  <description>
+    <p>One window, at most five tabs, no history, no bookmarks, no suggestions.
+      The page is all there is on screen; everything else is done by typing
+      into one command line, opened with Ctrl+;.</p>
+    <p xml:lang="ru">Одно окно, не больше пяти вкладок, без истории, закладок и
+      подсказок. На экране только страница, а всё остальное делается командами
+      в одной строке, которая открывается по Ctrl+;.</p>
+  </description>
+  <launchable type="desktop-id">io.github.wolframium_main.Plain.desktop</launchable>
+  <url type="homepage">https://github.com/wolframium-main/plain</url>
+  <url type="bugtracker">https://github.com/wolframium-main/plain/issues</url>
+  <developer id="io.github.wolframium_main">
+    <name>Wolframium</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+  <requires>
+    <control>keyboard</control>
+  </requires>
+  <releases>
+    <release version="0.2.0" date="2026-10-29">
+      <description><p>A native GNOME application: GTK 4, libadwaita and WebKitGTK.</p></description>
+    </release>
+    <release version="0.1.0" date="2026-10-29"/>
+  </releases>
+</component>

@@ -6,3 +6,4 @@
 /packaging/aur/pkg/
 /packaging/aur/plain/
 /packaging/aur/*.pkg.tar.*
+/target/
